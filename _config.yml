@@ -99,6 +99,8 @@ ignore:
 ## Themes: https://hexo.io/themes/
 # theme: landscape
 theme: next
+scheme: Mist
+darkmode: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

@@ -157,6 +157,75 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/09/04/%E3%80%90Kotlin%E3%80%91Gradle-Build-%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jimxl">
+      <meta itemprop="description" content="程序和管理经验总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的程序人生">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/04/%E3%80%90Kotlin%E3%80%91Gradle-Build-%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" class="post-title-link" itemprop="url">【Kotlin】Gradle Build 文件报错</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-05 02:07:41 / 修改时间：02:23:34" itemprop="dateCreated datePublished" datetime="2021-09-05T02:07:41+08:00">2021-09-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在用Kotlin重写 <a target="_blank" rel="noopener" href="https://github.com/JavaDream/migration">Migration</a> 项目，今天遇到了奇怪的现象：<br>写着写着项目,下面的所有 build.gradle.kts 文件Idea全部报错，说找不到 “org.gradle.kotlin.dsl.KotlinBuildScript”。但是在这些错误下，程序竟然还可以正常的跑测试和运行。<br>整个问题很奇怪，我什么都没改，有时候只是添加了一个依赖，就会出现整个问题。而且去掉以来之后还是不行。</p>
+<p>期间试用了各种办法, 网上搜索比较靠谱的就是 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/65645510/cannot-access-script-base-class-org-gradle-kotlin-dsl-kotlinbuildscript">解决办法</a><br>里面最靠谱的方法是:</p>
+<p><img src="/images/image_5.png" alt="微观管理"></p>
+<p>在我开始创建整个项目的时候，也遇到了这个问题，当时就是用Idea新建了项目，什么也不干就是有整个错误，最后就使用上图的办法解决的。但是这次反反复复折腾了几次还是不行。<br>此时内心是崩溃的，难道整个项目要换回Maven来管理？而且怎么便捷的更换过去呢？ 一堆问题的情况下，我决定还是再坚持坚持。</p>
+<p>期间各种搜索，各种实验，结果是各种失败，就在要放弃的时候，尝试的看了一下竟然还有人这么说</p>
+<p><img src="/images/image_6.png" alt="微观管理"></p>
+<p>抱着最后的希望试了一下，发现竟然可以了, 具体设置如下</p>
+<p><img src="/images/image_7.png" alt="微观管理"><br><img src="/images/image_8.png" alt="微观管理"></p>
+<p>虽然还没搞懂为啥，但是毕竟是有效果了，赶紧记下来先。</p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/08/22/%E3%80%90Java%E3%80%91%E4%B8%BA%E7%94%A8%E5%88%B0-System-getenv-%E7%9A%84%E5%87%BD%E6%95%B0%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -180,10 +249,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-08-22 12:09:39 / 修改时间：13:55:01" itemprop="dateCreated datePublished" datetime="2021-08-22T12:09:39+08:00">2021-08-22</time>
+              <time title="创建时间：2021-08-22 12:09:39" itemprop="dateCreated datePublished" datetime="2021-08-22T12:09:39+08:00">2021-08-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
+              </span>
 
           
 
@@ -266,7 +341,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-22 13:55:01" itemprop="dateModified" datetime="2021-08-22T13:55:01+08:00">2021-08-22</time>
+                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
               </span>
 
           
@@ -369,7 +444,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-22 13:55:01" itemprop="dateModified" datetime="2021-08-22T13:55:01+08:00">2021-08-22</time>
+                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
               </span>
 
           
@@ -446,7 +521,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-22 13:55:01" itemprop="dateModified" datetime="2021-08-22T13:55:01+08:00">2021-08-22</time>
+                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
               </span>
 
           
@@ -553,7 +628,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-08-22 13:55:01" itemprop="dateModified" datetime="2021-08-22T13:55:01+08:00">2021-08-22</time>
+                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
               </span>
 
           
@@ -651,14 +726,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

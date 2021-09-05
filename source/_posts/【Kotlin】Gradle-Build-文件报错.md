@@ -13,19 +13,19 @@ tags: Kotlin, Gradle
 期间试用了各种办法, 网上搜索比较靠谱的就是 [解决办法](https://stackoverflow.com/questions/65645510/cannot-access-script-base-class-org-gradle-kotlin-dsl-kotlinbuildscript)
 里面最靠谱的方法是:
 
-![微观管理](/images/image_5.png)
+![解决办法](/images/image_5.png)
 
 在我开始创建整个项目的时候，也遇到了这个问题，当时就是用Idea新建了项目，什么也不干就是有整个错误，最后就使用上图的办法解决的。但是这次反反复复折腾了几次还是不行。
 此时内心是崩溃的，难道整个项目要换回Maven来管理？而且怎么便捷的更换过去呢？ 一堆问题的情况下，我决定还是再坚持坚持。
 
 期间各种搜索，各种实验，结果是各种失败，就在要放弃的时候，尝试的看了一下竟然还有人这么说
 
-![微观管理](/images/image_6.png)
+![解决办法](/images/image_6.png)
 
 抱着最后的希望试了一下，发现竟然可以了, 具体设置如下
 
-![微观管理](/images/image_7.png)
-![微观管理](/images/image_8.png)
+![解决办法](/images/image_7.png)
+![解决办法](/images/image_8.png)
 
 虽然还没搞懂为啥，但是毕竟是有效果了，赶紧记下来先。
 

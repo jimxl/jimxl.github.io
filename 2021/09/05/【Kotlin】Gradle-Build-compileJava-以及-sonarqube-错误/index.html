@@ -20,19 +20,26 @@
     var CONFIG = {"hostname":"jimxl.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="程序和管理经验总结">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://jimxl.github.io/tags/index.html">
+  <meta name="description" content="背景最近写Kotlin代码，发现文件函数还是不如ruby方便，例如获取目录下后缀为 .kt 的文件，例如创建文件的时候，如果目录不存在就把目录先创建了，于是想Kotlin的DSL语法也是很强大的，应该能较好的实现ruby的各种特性。所以，开始了Kotby项目, 始构建了一个简单的gradle项目，添加了sonarqube插件结果在 github action里面build步骤一直报错。  于是我在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Kotlin】Gradle Build compileJava 以及 sonarqube 错误">
+<meta property="og:url" content="https://jimxl.github.io/2021/09/05/%E3%80%90Kotlin%E3%80%91Gradle-Build-compileJava-%E4%BB%A5%E5%8F%8A-sonarqube-%E9%94%99%E8%AF%AF/index.html">
 <meta property="og:site_name" content="我的程序人生">
-<meta property="og:description" content="程序和管理经验总结">
+<meta property="og:description" content="背景最近写Kotlin代码，发现文件函数还是不如ruby方便，例如获取目录下后缀为 .kt 的文件，例如创建文件的时候，如果目录不存在就把目录先创建了，于是想Kotlin的DSL语法也是很强大的，应该能较好的实现ruby的各种特性。所以，开始了Kotby项目, 始构建了一个简单的gradle项目，添加了sonarqube插件结果在 github action里面build步骤一直报错。  于是我在">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2018-10-10T04:21:48.000Z">
-<meta property="article:modified_time" content="2021-09-05T14:13:48.049Z">
+<meta property="og:image" content="https://jimxl.github.io/images/image_9.png">
+<meta property="og:image" content="https://jimxl.github.io/images/image_10.png">
+<meta property="og:image" content="https://jimxl.github.io/images/image_11.png">
+<meta property="og:image" content="https://jimxl.github.io/images/image_12.png">
+<meta property="og:image" content="https://jimxl.github.io/images/image_13.png">
+<meta property="article:published_time" content="2021-09-05T13:57:28.000Z">
+<meta property="article:modified_time" content="2021-09-05T14:13:48.021Z">
 <meta property="article:author" content="Jimxl">
+<meta property="article:tag" content="Kotlin, Gradle">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jimxl.github.io/images/image_9.png">
 
-<link rel="canonical" href="https://jimxl.github.io/tags/">
+<link rel="canonical" href="https://jimxl.github.io/2021/09/05/%E3%80%90Kotlin%E3%80%91Gradle-Build-compileJava-%E4%BB%A5%E5%8F%8A-sonarqube-%E9%94%99%E8%AF%AF/">
 
 
 <script id="page-configurations">
@@ -40,13 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>标签 | 我的程序人生
-</title>
+  <title>【Kotlin】Gradle Build compileJava 以及 sonarqube 错误 | 我的程序人生</title>
   
 
 
@@ -153,51 +159,121 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/09/05/%E3%80%90Kotlin%E3%80%91Gradle-Build-compileJava-%E4%BB%A5%E5%8F%8A-sonarqube-%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jimxl">
+      <meta itemprop="description" content="程序和管理经验总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的程序人生">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Kotlin】Gradle Build compileJava 以及 sonarqube 错误
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">标签
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2021-09-05 21:57:28 / 修改时间：22:13:48" itemprop="dateCreated datePublished" datetime="2021-09-05T21:57:28+08:00">2021-09-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近写Kotlin代码，发现文件函数还是不如ruby方便，例如获取目录下后缀为 .kt 的文件，例如创建文件的时候，如果目录不存在就把目录先创建了，于是想Kotlin的DSL语法也是很强大的，应该能较好的实现ruby的各种特性。<br>所以，开始了<a target="_blank" rel="noopener" href="https://github.com/KotlinDream/kotby">Kotby</a>项目, 始构建了一个简单的gradle项目，添加了sonarqube插件结果在 github action里面build步骤一直报错。</p>
+<p><img src="/images/image_9.png" alt="错误截图"></p>
+<p>于是我在本地开始debug gradle build 命令，看看错误出现在哪儿，结果本地一直给出如下错误</p>
+<p><img src="/images/image_10.png" alt="错误截图"></p>
+<p>而且在IDEA里面无论是build还是跑测试都正常，就是命令行里面执行 ./gradlew build。检查了IDEA里面的各种设置都是Java16啊, build.gradle.kts 文件里面也是写的16。</p>
+<p><img src="/images/image_11.png" alt="build.gradle.kts"></p>
+<p>就奇怪了，哪儿也没有制定过 14。 还想是不是 build.gradle.kts 需要设置，但是google了半天也没找到如何设置。想来想去，那就只能是命令行里面Java的版本问题了，一看果然是的。<br>原来gradle运行的时候，是这样的逻辑啊。马上用 sdkman 安装了16，设置成了默认。一切ok，以为都解决了结果 sonarqube 又报错.</p>
+<p><img src="/images/image_12.png" alt="build.gradle.kts"></p>
+<p>说什么手动，自动收集都开启了，需要关闭一个。问题我从来没开过什么自动收集。最重要的看错误也不知道是 gradle的某个什么收集，还是sonarqube的某个收集。又是两个小时的搜索和研究，终于找到了问题.</p>
+<p><img src="/images/image_13.png" alt="sonarcloud"></p>
+<p>不知道是什么时候打开了，还是创建的时候是默认打开的，总之关闭之后终于正常了。</p>
+<p>辛苦的一天</p>
+
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="/2021/09/04/【Kotlin】Gradle-Build-文件报错/" rel="bookmark">【Kotlin】Gradle Build 文件报错</a></div>
+    </li>
+  </ul>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="https://twitter.com/jimxl">
+            <span class="icon">
+              <i class="fab fa-twitter"></i>
+            </span>
+
+            <span class="label">Twitter</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kotlin-Gradle/" rel="tag"># Kotlin, Gradle</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/04/%E3%80%90Kotlin%E3%80%91Gradle-Build-%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" rel="prev" title="【Kotlin】Gradle Build 文件报错">
+      <i class="fa fa-chevron-left"></i> 【Kotlin】Gradle Build 文件报错
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 3 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Java/" style="font-size: 12px; color: #ccc">Java</a> <a href="/tags/Kotlin-Gradle/" style="font-size: 12px; color: #ccc">Kotlin, Gradle</a> <a href="/tags/%E7%AE%A1%E7%90%86/" style="font-size: 12px; color: #ccc">管理</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -248,6 +324,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

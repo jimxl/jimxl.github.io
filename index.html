@@ -157,6 +157,78 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/09/05/%E3%80%90Kotlin%E3%80%91Gradle-Build-compileJava-%E4%BB%A5%E5%8F%8A-sonarqube-%E9%94%99%E8%AF%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jimxl">
+      <meta itemprop="description" content="程序和管理经验总结">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="我的程序人生">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/09/05/%E3%80%90Kotlin%E3%80%91Gradle-Build-compileJava-%E4%BB%A5%E5%8F%8A-sonarqube-%E9%94%99%E8%AF%AF/" class="post-title-link" itemprop="url">【Kotlin】Gradle Build compileJava 以及 sonarqube 错误</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-09-05 21:57:28 / 修改时间：22:13:48" itemprop="dateCreated datePublished" datetime="2021-09-05T21:57:28+08:00">2021-09-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近写Kotlin代码，发现文件函数还是不如ruby方便，例如获取目录下后缀为 .kt 的文件，例如创建文件的时候，如果目录不存在就把目录先创建了，于是想Kotlin的DSL语法也是很强大的，应该能较好的实现ruby的各种特性。<br>所以，开始了<a target="_blank" rel="noopener" href="https://github.com/KotlinDream/kotby">Kotby</a>项目, 始构建了一个简单的gradle项目，添加了sonarqube插件结果在 github action里面build步骤一直报错。</p>
+<p><img src="/images/image_9.png" alt="错误截图"></p>
+<p>于是我在本地开始debug gradle build 命令，看看错误出现在哪儿，结果本地一直给出如下错误</p>
+<p><img src="/images/image_10.png" alt="错误截图"></p>
+<p>而且在IDEA里面无论是build还是跑测试都正常，就是命令行里面执行 ./gradlew build。检查了IDEA里面的各种设置都是Java16啊, build.gradle.kts 文件里面也是写的16。</p>
+<p><img src="/images/image_11.png" alt="build.gradle.kts"></p>
+<p>就奇怪了，哪儿也没有制定过 14。 还想是不是 build.gradle.kts 需要设置，但是google了半天也没找到如何设置。想来想去，那就只能是命令行里面Java的版本问题了，一看果然是的。<br>原来gradle运行的时候，是这样的逻辑啊。马上用 sdkman 安装了16，设置成了默认。一切ok，以为都解决了结果 sonarqube 又报错.</p>
+<p><img src="/images/image_12.png" alt="build.gradle.kts"></p>
+<p>说什么手动，自动收集都开启了，需要关闭一个。问题我从来没开过什么自动收集。最重要的看错误也不知道是 gradle的某个什么收集，还是sonarqube的某个收集。又是两个小时的搜索和研究，终于找到了问题.</p>
+<p><img src="/images/image_13.png" alt="sonarcloud"></p>
+<p>不知道是什么时候打开了，还是创建的时候是默认打开的，总之关闭之后终于正常了。</p>
+<p>辛苦的一天</p>
+
+      
+    </div>
+
+    
+    
+    
+      
+
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/09/04/%E3%80%90Kotlin%E3%80%91Gradle-Build-%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -182,7 +254,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-05 02:07:41 / 修改时间：02:23:34" itemprop="dateCreated datePublished" datetime="2021-09-05T02:07:41+08:00">2021-09-05</time>
+              <time title="创建时间：2021-09-05 02:07:41 / 修改时间：22:13:48" itemprop="dateCreated datePublished" datetime="2021-09-05T02:07:41+08:00">2021-09-05</time>
             </span>
 
           
@@ -198,12 +270,12 @@
       
           <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近在用Kotlin重写 <a target="_blank" rel="noopener" href="https://github.com/JavaDream/migration">Migration</a> 项目，今天遇到了奇怪的现象：<br>写着写着项目,下面的所有 build.gradle.kts 文件Idea全部报错，说找不到 “org.gradle.kotlin.dsl.KotlinBuildScript”。但是在这些错误下，程序竟然还可以正常的跑测试和运行。<br>整个问题很奇怪，我什么都没改，有时候只是添加了一个依赖，就会出现整个问题。而且去掉以来之后还是不行。</p>
 <p>期间试用了各种办法, 网上搜索比较靠谱的就是 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/65645510/cannot-access-script-base-class-org-gradle-kotlin-dsl-kotlinbuildscript">解决办法</a><br>里面最靠谱的方法是:</p>
-<p><img src="/images/image_5.png" alt="微观管理"></p>
+<p><img src="/images/image_5.png" alt="解决办法"></p>
 <p>在我开始创建整个项目的时候，也遇到了这个问题，当时就是用Idea新建了项目，什么也不干就是有整个错误，最后就使用上图的办法解决的。但是这次反反复复折腾了几次还是不行。<br>此时内心是崩溃的，难道整个项目要换回Maven来管理？而且怎么便捷的更换过去呢？ 一堆问题的情况下，我决定还是再坚持坚持。</p>
 <p>期间各种搜索，各种实验，结果是各种失败，就在要放弃的时候，尝试的看了一下竟然还有人这么说</p>
-<p><img src="/images/image_6.png" alt="微观管理"></p>
+<p><img src="/images/image_6.png" alt="解决办法"></p>
 <p>抱着最后的希望试了一下，发现竟然可以了, 具体设置如下</p>
-<p><img src="/images/image_7.png" alt="微观管理"><br><img src="/images/image_8.png" alt="微观管理"></p>
+<p><img src="/images/image_7.png" alt="解决办法"><br><img src="/images/image_8.png" alt="解决办法"></p>
 <p>虽然还没搞懂为啥，但是毕竟是有效果了，赶紧记下来先。</p>
 
       
@@ -257,7 +329,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
+                <time title="修改时间：2021-09-05 22:13:48" itemprop="dateModified" datetime="2021-09-05T22:13:48+08:00">2021-09-05</time>
               </span>
 
           
@@ -341,7 +413,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
+                <time title="修改时间：2021-09-05 22:13:48" itemprop="dateModified" datetime="2021-09-05T22:13:48+08:00">2021-09-05</time>
               </span>
 
           
@@ -444,7 +516,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
+                <time title="修改时间：2021-09-05 22:13:48" itemprop="dateModified" datetime="2021-09-05T22:13:48+08:00">2021-09-05</time>
               </span>
 
           
@@ -521,7 +593,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
+                <time title="修改时间：2021-09-05 22:13:48" itemprop="dateModified" datetime="2021-09-05T22:13:48+08:00">2021-09-05</time>
               </span>
 
           
@@ -628,7 +700,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-05 02:23:34" itemprop="dateModified" datetime="2021-09-05T02:23:34+08:00">2021-09-05</time>
+                <time title="修改时间：2021-09-05 22:13:48" itemprop="dateModified" datetime="2021-09-05T22:13:48+08:00">2021-09-05</time>
               </span>
 
           
@@ -726,7 +798,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

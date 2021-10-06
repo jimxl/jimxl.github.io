@@ -20,22 +20,20 @@
     var CONFIG = {"hostname":"jimxl.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="背景 说到管理，一方面说不要微观管理，一方面又说要深入细节，不要浮在上面看。原来一直不能很好的理解，甚至觉得矛盾。 工作额时候如果一直指挥下面的人干活，又累又觉得不对，当然被指挥的时候也会觉得是不是发挥不出来自己的能动性，只是机械的执行。 工作的时候如果不指挥下面的人又觉得，这不是管理，实在放羊。 领导已经改变了我的管理方式，明确基于目标管理，基于指标管理。但是跟上面的1-3点如何融合起来呢。">
+  <meta name="description" content="今天是值得纪念的，在之前成功的发布了 kotby代码库到官方的 maven仓库的基础上，今天有把 devtools 的gradle plugin发布到了Gradle官方仓库 目的这个插件就是希望在开发Gradle的项目的时候，能更自动的做一些事情，帮助我们高效开发。 目前能做的就是根据文件的变化，自动执行对应的测试。我们可以想象开发过程有如下场景:  我边写了Kotlin代码，然后编写了对应的测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【管理】微观管理 和 目标管理">
-<meta property="og:url" content="https://jimxl.github.io/2021/07/28/%E3%80%90%E7%AE%A1%E7%90%86%E3%80%91%E5%BE%AE%E8%A7%82%E7%AE%A1%E7%90%86-%E5%92%8C-%E7%9B%AE%E6%A0%87%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:title" content="【Gradle】今天发布了第一个Gradle Plugin [info.dreamcoder.devtools]">
+<meta property="og:url" content="https://jimxl.github.io/2021/10/06/%E3%80%90Gradle%E3%80%91%E4%BB%8A%E5%A4%A9%E5%8F%91%E5%B8%83%E4%BA%86%E7%AC%AC%E4%B8%80%E4%B8%AAGradle-Plugin/index.html">
 <meta property="og:site_name" content="我的程序人生">
-<meta property="og:description" content="背景 说到管理，一方面说不要微观管理，一方面又说要深入细节，不要浮在上面看。原来一直不能很好的理解，甚至觉得矛盾。 工作额时候如果一直指挥下面的人干活，又累又觉得不对，当然被指挥的时候也会觉得是不是发挥不出来自己的能动性，只是机械的执行。 工作的时候如果不指挥下面的人又觉得，这不是管理，实在放羊。 领导已经改变了我的管理方式，明确基于目标管理，基于指标管理。但是跟上面的1-3点如何融合起来呢。">
+<meta property="og:description" content="今天是值得纪念的，在之前成功的发布了 kotby代码库到官方的 maven仓库的基础上，今天有把 devtools 的gradle plugin发布到了Gradle官方仓库 目的这个插件就是希望在开发Gradle的项目的时候，能更自动的做一些事情，帮助我们高效开发。 目前能做的就是根据文件的变化，自动执行对应的测试。我们可以想象开发过程有如下场景:  我边写了Kotlin代码，然后编写了对应的测试">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jimxl.github.io/images/image_1.jpeg">
-<meta property="article:published_time" content="2021-07-28T15:21:45.000Z">
+<meta property="article:published_time" content="2021-10-06T10:49:21.000Z">
 <meta property="article:modified_time" content="2021-10-06T11:00:32.640Z">
 <meta property="article:author" content="Jimxl">
-<meta property="article:tag" content="管理">
+<meta property="article:tag" content="Gradle, Kotlin, Plugin">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jimxl.github.io/images/image_1.jpeg">
 
-<link rel="canonical" href="https://jimxl.github.io/2021/07/28/%E3%80%90%E7%AE%A1%E7%90%86%E3%80%91%E5%BE%AE%E8%A7%82%E7%AE%A1%E7%90%86-%E5%92%8C-%E7%9B%AE%E6%A0%87%E7%AE%A1%E7%90%86/">
+<link rel="canonical" href="https://jimxl.github.io/2021/10/06/%E3%80%90Gradle%E3%80%91%E4%BB%8A%E5%A4%A9%E5%8F%91%E5%B8%83%E4%BA%86%E7%AC%AC%E4%B8%80%E4%B8%AAGradle-Plugin/">
 
 
 <script id="page-configurations">
@@ -48,7 +46,7 @@
   };
 </script>
 
-  <title>【管理】微观管理 和 目标管理 | 我的程序人生</title>
+  <title>【Gradle】今天发布了第一个Gradle Plugin [info.dreamcoder.devtools] | 我的程序人生</title>
   
 
 
@@ -163,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/07/28/%E3%80%90%E7%AE%A1%E7%90%86%E3%80%91%E5%BE%AE%E8%A7%82%E7%AE%A1%E7%90%86-%E5%92%8C-%E7%9B%AE%E6%A0%87%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="https://jimxl.github.io/2021/10/06/%E3%80%90Gradle%E3%80%91%E4%BB%8A%E5%A4%A9%E5%8F%91%E5%B8%83%E4%BA%86%E7%AC%AC%E4%B8%80%E4%B8%AAGradle-Plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -176,7 +174,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          【管理】微观管理 和 目标管理
+          【Gradle】今天发布了第一个Gradle Plugin [info.dreamcoder.devtools]
         </h1>
 
         <div class="post-meta">
@@ -185,16 +183,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-07-28 23:21:45" itemprop="dateCreated datePublished" datetime="2021-07-28T23:21:45+08:00">2021-07-28</time>
+              <time title="创建时间：2021-10-06 18:49:21 / 修改时间：19:00:32" itemprop="dateCreated datePublished" datetime="2021-10-06T18:49:21+08:00">2021-10-06</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-06 19:00:32" itemprop="dateModified" datetime="2021-10-06T19:00:32+08:00">2021-10-06</time>
-              </span>
 
           
 
@@ -207,47 +199,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
-<li>说到管理，一方面说不要微观管理，一方面又说要深入细节，不要浮在上面看。原来一直不能很好的理解，甚至觉得矛盾。</li>
-<li>工作额时候如果一直指挥下面的人干活，又累又觉得不对，当然被指挥的时候也会觉得是不是发挥不出来自己的能动性，只是机械的执行。</li>
-<li>工作的时候如果不指挥下面的人又觉得，这不是管理，实在放羊。</li>
-<li>领导已经改变了我的管理方式，明确基于目标管理，基于指标管理。但是跟上面的1-3点如何融合起来呢。</li>
-</ol>
-<p>这些矛盾一边工作，一边思考，其实心里面一直知道正确的应该是什么样，只是这个道理很难通俗易懂的讲出来。直到一天早上(2021年6月17日)打车去公司的路上一下想通了。道理其实简单明了。</p>
-<h2 id="一个简单清晰的例子"><a href="#一个简单清晰的例子" class="headerlink" title="一个简单清晰的例子"></a>一个简单清晰的例子</h2><blockquote>
-<p>看懂了例子就看懂了 微观管理 和 目标管理</p>
-</blockquote>
-<p>假设我要去一个地方，叫了Taxi，我坐司机在旁边，路上的情况很复杂，那我应该如何帮助司机一起走到终点呢。</p>
+        <p>今天是值得纪念的，在之前成功的发布了 kotby代码库到官方的 maven仓库的基础上，今天有把 <a target="_blank" rel="noopener" href="https://plugins.gradle.org/plugin/info.dreamcoder.devtools">devtools</a> 的gradle plugin发布到了Gradle官方仓库</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>这个插件就是希望在开发Gradle的项目的时候，能更自动的做一些事情，帮助我们高效开发。</p>
+<p>目前能做的就是根据文件的变化，自动执行对应的测试。我们可以想象开发过程有如下场景:</p>
 <ol>
-<li>首先我叫车的时候，就是要定好去的地方，这就是目标管理。</li>
-<li>司机来了，我就跟司机组成了一个团队。</li>
-<li>我要告诉司机，我要去哪儿，大概走哪条路，并且告诉他大概多久希望到。</li>
-<li>司机上路，在每个路口，或者每次并线，选择主路或者辅路的时候我不随意指挥，但是根据实际的结果情况，记录下师傅的这次选择是否合理。<ol>
-<li>很多时候，坐在旁边的人就很喜欢指挥，例如:<ol>
-<li>走最左边快一点，</li>
-<li>走辅路快一点，</li>
-<li>为什么不并线啊，明显旁边的路更顺利</li>
+<li>我边写了Kotlin代码，然后编写了对应的测试，想跑测试的时候。</li>
+<li>当我们修改了某个代码文件，想去跑对应的测试的时候。</li>
+<li>当我们修改了对应的测试，想跑测试的时候。</li>
 </ol>
-</li>
-<li>如果是例子的情况，时候错误就非常明显，在做微观的指挥。<ol>
-<li>对于指挥的人来说很累，每条路都要指挥。</li>
-<li>对于开车的人来说很烦，没有返回的空间。</li>
-<li>对于实际情况来说，没有利用上师傅的经验，也许他选择的看似不正确的路，最后是正确的。</li>
+<p>这个三种情况，原来要么在IDE里面点击，要么在命令行手动输入命令 gradle test –tests=”AbcClass”<br>这些都会打断我们的开发和思路, 实际上最好的过程就是有一个守护程序，当发现文件变动后就自动执行对应的测试。<br>Rails开发中就有，<a target="_blank" rel="noopener" href="https://github.com/guard/guard">Guard</a> 插件能完成这个能力，开发过程非常方便。<br>Java体系的项目中好像一直就还没有找到对应的工具，所以我自己开发了一个。</p>
+<p>如同 <a target="_blank" rel="noopener" href="https://github.com/guard/guard">Guard</a> 能完成很多功能一样，未来<a target="_blank" rel="noopener" href="https://plugins.gradle.org/plugin/info.dreamcoder.devtools">devtools</a>还会有更多的功能。</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ol>
+<li>启用插件</li>
 </ol>
-</li>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id(<span class="string">&quot;info.dreamcoder.devtools&quot;</span>) version <span class="string">&quot;1.3&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>启动守护进程</li>
 </ol>
-</li>
-<li>根据第四步记录的情况，判断这个司机是否靠谱。</li>
-<li>对于不靠谱的司机<ol>
-<li>可以选择进行能力培训。</li>
-<li>或者做替换，下次再不坐他的车了。</li>
-<li>开始指挥司机，确保尽快到目的地。</li>
-</ol>
-</li>
-<li>第5步，不一定要到了终点再做决策，如果已经有了足够的数据发现这个司机的问题，中途就需要采取第6步的策略了。</li>
-<li>对于管理者来说，最重要的是 “中间每次选择的错误”，需要总结，行成典型案例，用于团队能力提升。</li>
-</ol>
-<h2 id="附上打车的时候，灵感迸发的瞬间"><a href="#附上打车的时候，灵感迸发的瞬间" class="headerlink" title="附上打车的时候，灵感迸发的瞬间"></a>附上打车的时候，灵感迸发的瞬间</h2><p><img src="/images/image_1.jpeg" alt="微观管理"></p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradle guard</span><br></pre></td></tr></table></figure>
+
+<p>于是，上面方便的提升测试效率的工具就有了。</p>
 
     </div>
 
@@ -255,12 +227,6 @@
     
     
       
-  <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="/2021/08/09/【管理】统一规则的重要性/" rel="bookmark">【管理】统一规则的重要性</a></div>
-    </li>
-  </ul>
 
         
 
@@ -284,7 +250,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%AE%A1%E7%90%86/" rel="tag"># 管理</a>
+              <a href="/tags/Gradle-Kotlin-Plugin/" rel="tag"># Gradle, Kotlin, Plugin</a>
           </div>
 
         
@@ -293,13 +259,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/20/%E5%BC%80%E5%A4%A9%E8%BE%9F%E5%9C%B0/" rel="prev" title="开天辟地">
-      <i class="fa fa-chevron-left"></i> 开天辟地
+    <a href="/2021/09/27/%E3%80%90Kotlin%E3%80%91Gradle%E5%9C%A8Task%E5%BC%80%E5%8F%91%E4%B8%AD%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AATask/" rel="prev" title="【Kotlin】Gradle在Task开发中调用另一个Task">
+      <i class="fa fa-chevron-left"></i> 【Kotlin】Gradle在Task开发中调用另一个Task
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/08/09/%E3%80%90%E7%AE%A1%E7%90%86%E3%80%91%E7%BB%9F%E4%B8%80%E8%A7%84%E5%88%99%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7/" rel="next" title="【管理】统一规则的重要性">
-      【管理】统一规则的重要性 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -358,7 +321,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E6%B8%85%E6%99%B0%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-number">2.</span> <span class="nav-text">一个简单清晰的例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E4%B8%8A%E6%89%93%E8%BD%A6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E7%81%B5%E6%84%9F%E8%BF%B8%E5%8F%91%E7%9A%84%E7%9E%AC%E9%97%B4"><span class="nav-number">3.</span> <span class="nav-text">附上打车的时候，灵感迸发的瞬间</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">使用</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
